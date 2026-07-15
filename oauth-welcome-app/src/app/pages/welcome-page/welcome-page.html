@@ -1,0 +1,99 @@
+<main class="welcome-layout">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Welcome Page</p>
+      <h1>Hello, {{ user()?.name }}</h1>
+    </div>
+    <button type="button" (click)="logout()">Sign out</button>
+  </header>
+
+  <section class="profile-row">
+    <div>
+      <span>Email</span>
+      <strong>{{ user()?.email }}</strong>
+    </div>
+    <div>
+      <span>Role</span>
+      <strong>{{ user()?.role }}</strong>
+    </div>
+    <div>
+      <span>API</span>
+      <strong>{{ apiStatus() }}</strong>
+    </div>
+  </section>
+
+  <section class="api-panel" [class.connected]="apiStatus() === 'connected'" [class.unavailable]="apiStatus() === 'unavailable'">
+    <p class="eyebrow">API Sync</p>
+    <h2>{{ welcome()?.message ?? apiMessage() }}</h2>
+    @if (welcome()?.visibleFeatures?.length) {
+      <div class="feature-list">
+        @for (feature of welcome()?.visibleFeatures; track feature) {
+          <span>{{ feature }}</span>
+        }
+      </div>
+    }
+  </section>
+
+  @if (user()?.role === 'Admin') {
+    <section class="role-panel admin">
+      <p class="eyebrow">Admin View</p>
+      <h2>Operations dashboard</h2>
+      <p>You can see tenant settings, user administration, integration status, and protected management actions.</p>
+      <div class="tiles">
+        <article>
+          <span>Users</span>
+          <strong>42 active</strong>
+        </article>
+        <article>
+          <span>API Access</span>
+          <strong>Ready for .NET</strong>
+        </article>
+        <article>
+          <span>Policy</span>
+          <strong>Admin controls</strong>
+        </article>
+      </div>
+    </section>
+  } @else {
+    <section class="role-panel employee">
+      <p class="eyebrow">Employee View</p>
+      <h2>Your workspace</h2>
+      <p>You can see personal tasks, profile details, and content intended for standard authenticated users.</p>
+      <div class="tiles">
+        <article>
+          <span>Tasks</span>
+          <strong>5 assigned</strong>
+        </article>
+        <article>
+          <span>Access</span>
+          <strong>Standard user</strong>
+        </article>
+        <article>
+          <span>Profile</span>
+          <strong>Up to date</strong>
+        </article>
+      </div>
+    </section>
+  }
+
+  @if (questions().length) {
+    <section class="questions-panel">
+      <p class="eyebrow">From PostgreSQL API</p>
+      <h2>Interview questions</h2>
+      <div class="question-list">
+        @for (question of questions(); track question.id) {
+          <article>
+            <div>
+              <span>{{ question.category }} / {{ question.difficulty }}</span>
+              <h3>{{ question.title }}</h3>
+            </div>
+            <p>{{ question.answer }}</p>
+            @if (question.adminOnly) {
+              <strong class="admin-badge">Admin</strong>
+            }
+          </article>
+        }
+      </div>
+    </section>
+  }
+</main>

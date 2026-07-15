@@ -1,0 +1,27 @@
+.callback-layout {
+  align-items: center;
+  background: #f5f7fb;
+  display: flex;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.callback-panel {
+  background: #ffffff;
+  border: 1px solid #d8e0ea;
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 480px;
+  padding: 32px;
+  text-align: center;
+}
+
+h1 {
+  color: #172033;
+  margin-top: 0;
+}
+
+p,
+a {
+  color: #526074;
+}

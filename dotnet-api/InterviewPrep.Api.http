@@ -1,0 +1,31 @@
+@host = http://localhost:5058
+@token = paste-jwt-token-here
+
+GET {{host}}/api/health
+Accept: application/json
+
+###
+
+GET {{host}}/api/welcome
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+GET {{host}}/api/interview-questions
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+POST {{host}}/api/interview-questions
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "What is middleware in ASP.NET Core?",
+  "answer": "Middleware is software assembled into the request pipeline to handle requests and responses.",
+  "difficulty": "Medium",
+  "category": "ASP.NET Core",
+  "adminOnly": false
+}

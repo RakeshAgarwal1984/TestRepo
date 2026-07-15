@@ -1,0 +1,14 @@
+<main class="callback-layout">
+  @if (error()) {
+    <section class="callback-panel">
+      <h1>Sign-in needs attention</h1>
+      <p>{{ error() }}</p>
+      <a routerLink="/login">Back to login</a>
+    </section>
+  } @else {
+    <section class="callback-panel">
+      <h1>Finishing sign-in</h1>
+      <p>Please wait while your OAuth2 response is verified.</p>
+    </section>
+  }
+</main>

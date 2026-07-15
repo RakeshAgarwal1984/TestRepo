@@ -1,0 +1,17 @@
+<main class="auth-layout">
+  <section class="login-panel">
+    <p class="eyebrow">OAuth2 Login</p>
+    <h1>Sign in to continue</h1>
+    <p class="summary">Use your identity provider when it is connected. Demo access is available now to preview authorization behavior.</p>
+
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+
+    <div class="actions">
+      <button class="primary" type="button" (click)="signInWithOAuth()">Continue with OAuth2</button>
+      <button type="button" (click)="loginAsAdmin()">Demo Admin User</button>
+      <button type="button" (click)="loginAsEmployee()">Demo Employee User</button>
+    </div>
+  </section>
+</main>
